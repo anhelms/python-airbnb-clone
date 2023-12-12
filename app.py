@@ -9,16 +9,19 @@ def hello():
     return 'Hello, World!'
 
 
-@app.route("/photos.json")
+@app.route("/rooms.json")
 def index():
-    return db.photos_all()
+    return db.rooms_all()
 
 
-@app.route("/photos.json", methods=["POST"])
+@app.route("/rooms.json", methods=["POST"])
 def create():
     name = request.form.get("name")
-    width = request.form.get("width")
-    height = request.form.get("height")
-    return db.photos_create(name, width, height)
+    city = request.form.get("city")
+    state = request.form.get("state")
+    return db.rooms_create(name, city, state)
 
 
+@app.route("/rooms/<id>.json")
+def show(id):
+    return db.rooms_find_by_id(id)

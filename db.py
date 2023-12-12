@@ -59,15 +59,27 @@ def rooms_all():
     return [dict(row) for row in rows]
 
 
-def photos_create(name, width, height):
+def rooms_create(name, city, state):
     conn = connect_to_db()
     row = conn.execute(
         """
-        INSERT INTO photos (name, width, height)
+        INSERT INTO rooms (name, city, state)
         VALUES (?, ?, ?)
         RETURNING *
         """,
-        (name, width, height),
+        (name, city, state),
     ).fetchone()
     conn.commit()
+    return dict(row)
+
+
+def rooms_find_by_id(id):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        SELECT * FROM rooms
+        WHERE id = ?
+        """,
+        id,
+    ).fetchone()
     return dict(row)
