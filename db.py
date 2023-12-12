@@ -58,8 +58,3 @@ def rooms_all():
     ).fetchall()
     return [dict(row) for row in rows]
 
-@app.route("/rooms.json")
-def index():
-    return db.rooms_all()
-
-
