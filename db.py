@@ -83,3 +83,17 @@ def rooms_find_by_id(id):
         id,
     ).fetchone()
     return dict(row)
+
+
+def rooms_update_by_id(id, name, city, state):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        UPDATE rooms SET name = ?, city = ?, state = ?
+        WHERE id = ?
+        RETURNING *
+        """,
+        (name, city, state, id),
+    ).fetchone()
+    conn.commit()
+    return dict(row)

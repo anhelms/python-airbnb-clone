@@ -25,3 +25,11 @@ def create():
 @app.route("/rooms/<id>.json")
 def show(id):
     return db.rooms_find_by_id(id)
+
+
+@app.route("/rooms/<id>.json", methods=["PATCH"])
+def update(id):
+    name = request.form.get("name")
+    city = request.form.get("city")
+    state = request.form.get("state")
+    return db.rooms_update_by_id(id, name, city, state)
