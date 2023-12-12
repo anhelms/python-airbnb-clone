@@ -33,3 +33,8 @@ def update(id):
     city = request.form.get("city")
     state = request.form.get("state")
     return db.rooms_update_by_id(id, name, city, state)
+
+
+@app.route("/rooms/<id>.json", methods=["DELETE"])
+def destroy(id):
+    return db.rooms_destroy_by_id(id)

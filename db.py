@@ -97,3 +97,16 @@ def rooms_update_by_id(id, name, city, state):
     ).fetchone()
     conn.commit()
     return dict(row)
+
+
+def rooms_destroy_by_id(id):
+    conn = connect_to_db()
+    row = conn.execute(
+        """
+        DELETE from rooms
+        WHERE id = ?
+        """,
+        id,
+    )
+    conn.commit()
+    return {"message": "Room destroyed successfully"}
