@@ -20,7 +20,8 @@ def create():
     name = request.form.get("name")
     city = request.form.get("city")
     state = request.form.get("state")
-    return db.rooms_create(name, city, state)
+    url = request.form.get("url")
+    return db.rooms_create(name, city, state, url)
 
 
 @app.route("/rooms/<id>.json")
@@ -33,7 +34,8 @@ def update(id):
     name = request.form.get("name")
     city = request.form.get("city")
     state = request.form.get("state")
-    return db.rooms_update_by_id(id, name, city, state)
+    url = request.form.get("url")
+    return db.rooms_update_by_id(id, name, city, state, url)
 
 
 @app.route("/rooms/<id>.json", methods=["DELETE"])
