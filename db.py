@@ -20,7 +20,8 @@ def initial_setup():
           id INTEGER PRIMARY KEY NOT NULL,
           name STRING,
           city STRING,
-          state STRING
+          state STRING,
+          url STRING
         );
         """
     )
@@ -28,14 +29,14 @@ def initial_setup():
     print("Table created successfully")
 
     rooms_seed_data = [
-        ("1st room", "Los Angeles", "CA"),
-        ("2nd room", "Los Angeles", "CA"),
-        ("3rd room", "Los Angeles", "CA"),
+        ("1st room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
+        ("2nd room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
+        ("3rd room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
     ]
     conn.executemany(
         """
-        INSERT INTO rooms (name, city, state)
-        VALUES (?,?,?)
+        INSERT INTO rooms (name, city, state, url)
+        VALUES (?,?,?,?)
         """,
         rooms_seed_data,
     )
@@ -59,15 +60,15 @@ def rooms_all():
     return [dict(row) for row in rows]
 
 
-def rooms_create(name, city, state):
+def rooms_create(name, city, state, url):
     conn = connect_to_db()
     row = conn.execute(
         """
-        INSERT INTO rooms (name, city, state)
-        VALUES (?, ?, ?)
+        INSERT INTO rooms (name, city, state, url)
+        VALUES (?, ?, ?, ?)
         RETURNING *
         """,
-        (name, city, state),
+        (name, city, state, url),
     ).fetchone()
     conn.commit()
     return dict(row)
@@ -85,15 +86,15 @@ def rooms_find_by_id(id):
     return dict(row)
 
 
-def rooms_update_by_id(id, name, city, state):
+def rooms_update_by_id(id, name, city, state, url):
     conn = connect_to_db()
     row = conn.execute(
         """
-        UPDATE rooms SET name = ?, city = ?, state = ?
+        UPDATE rooms SET name = ?, city = ?, state = ?, url = ?
         WHERE id = ?
         RETURNING *
         """,
-        (name, city, state, id),
+        (name, city, state, url, id),
     ).fetchone()
     conn.commit()
     return dict(row)
