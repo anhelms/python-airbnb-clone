@@ -31,7 +31,7 @@ def initial_setup():
     rooms_seed_data = [
         ("1st room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
         ("2nd room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
-        ("3rd room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
+        ("3rd room", "Vail", "CO", "https://www.mountainliving.com/content/uploads/data-import/9882388e/ColoradoRanch0614Exterior0157-fdc41d50.jpg"),
     ]
     conn.executemany(
         """
