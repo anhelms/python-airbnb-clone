@@ -29,8 +29,8 @@ def initial_setup():
     print("Table created successfully")
 
     rooms_seed_data = [
-        ("1st room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
-        ("2nd room", "Los Angeles", "CA", "https://photos.bringfido.com/restaurants/374/2582894013_39bedb0c66.jpg?size=slide&density=2x"),
+        ("1st room", "Los Angeles", "CA", "https://cdn.apartmenttherapy.info/image/upload/v1620834161/at/real-estate/duo-75.jpg"),
+        ("2nd room", "Los Angeles", "CA", "https://www.jamesedition.com/stories/wp-content/uploads/2021/01/29941-1.jpeg"),
         ("3rd room", "Vail", "CO", "https://www.mountainliving.com/content/uploads/data-import/9882388e/ColoradoRanch0614Exterior0157-fdc41d50.jpg"),
     ]
     conn.executemany(
